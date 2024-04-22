@@ -9,7 +9,7 @@ const App = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [city, setCity] = useState('');
 
-  const handleClick = async () => {
+  const handleClick = async (city) => {
     try {
       const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=e97015c147584cccaeb132640241904&q=${city}`);
       if (!response.ok) {
@@ -17,8 +17,8 @@ const App = () => {
       }
       const data = await response.json();
       console.log(data)
-      if (data.current) {
-        setWeatherData(data.current);
+      if (data) {
+        setWeatherData(data);
       } else {
         console.error('No current data found in the response');
       }
@@ -26,7 +26,6 @@ const App = () => {
       console.error('Error fetching weather data:', error);
     }
   };
-
   return (
     <>
       <BackgroundVideo />

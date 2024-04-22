@@ -8,11 +8,21 @@ const Weather = (props) => {
   // Initialize state for temperature and unit
   const [temp, setTemp] = useState(null); // Initialize with null
   const [unit, setUnit] = useState("°C"); // Initialize with Celsius unit
-
+  const date = new Date(weatherData.location.localtime); // Replace with your date
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const dayName = days[date.getDay()]; // Returns the name of the day
   // Update temperature when weatherData changes
   useEffect(() => {
     if (weatherData) {
-      setTemp(weatherData.temp_c); // Assuming temperature is initially in Celsius
+      setTemp(weatherData.current.temp_c); // Assuming temperature is initially in Celsius
     }
   }, [weatherData]);
 
@@ -20,45 +30,51 @@ const Weather = (props) => {
   const handleUnitToggle = () => {
     if (unit === "°C") {
       setUnit("°F");
-      setTemp(weatherData.temp_f); // Update temperature to Fahrenheit
+      setTemp(weatherData.current.temp_f); // Update temperature to Fahrenheit
     } else {
       setUnit("°C");
-      setTemp(weatherData.temp_c); // Update temperature to Celsius
+      setTemp(weatherData.current.temp_c); // Update temperature to Celsius
     }
   };
 
   return (
     <>
-    <div className="weather">
-      {weatherData && (
-        <>
-          <img
-            className="icon"
-            src={weatherData.condition.icon}
-            alt="Weather Icon"
-          />
-          <p className="temp" onClick={handleUnitToggle}>
-            {temp} {unit}
-          </p>
-          <p className="temp">{city}</p> {/* Display city */}
-        </>
-      )}
-    </div>
+      <div className="weather">
+        {weatherData && (
+          <>
+            <img
+              className="icon"
+              src={weatherData.current.condition.icon}
+              alt="Weather Icon"
+            />
+            <p className="temp" onClick={handleUnitToggle}>
+              {temp} <span className="cf"> {unit}</span>
+            </p>
+            <p className="temp">{weatherData.location.name}</p>
+          </>
+        )}
+      </div>
       {weatherData && (
         <div className="bottom">
-          <div className="left"><img src="https://ssl.gstatic.com/onebox/weather/64/fog.png" alt="" />
-          <div className="desc">
-            <p className="des">Humidty: {weatherData.humidity}%</p>
-            <p className="des">Wind: {weatherData.wind_kph}kph</p>
-          </div>
+          <div className="left">
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/fog.png"
+              alt=""
+            />
+            <div className="desc">
+              <p className="des">Humidty: {weatherData.current.humidity}%</p>
+              <p className="des">Wind: {weatherData.current.wind_kph}kph</p>
+            </div>
           </div>
           <div className="right">
-            <h3>Weather</h3>
-            {/* <p>{weatherData.current.location.name}</p> */}
-            </div>
+            <h3 className="loc">Weather</h3>
+            <p className="loc">{weatherData.location.name}</p>
+            <p className="loc">{weatherData.location.localtime}</p>
+            <p className="loc">{dayName}</p>
+          </div>
         </div>
       )}
-      </>
+    </>
   );
 };
 

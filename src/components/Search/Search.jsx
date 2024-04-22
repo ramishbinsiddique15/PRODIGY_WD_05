@@ -5,13 +5,14 @@ import './Search.css';
 const Search = (props) => {
   const [inputCity, setInputCity] = useState(''); // State to store input value
 
+  
   const handleInputChange = (event) => {
     setInputCity(event.target.value); // Update inputCity state on input change
   };
 
   const handleSearchClick = () => {
-    props.setCity(inputCity); // Update city state with inputCity when the button is clicked
-    props.handleClick(); // Trigger fetching weather data
+    props.handleClick(inputCity); // Pass inputCity to handleClick function
+    props.setCity(inputCity); // Update city state with inputCity
   };
 
   return (
