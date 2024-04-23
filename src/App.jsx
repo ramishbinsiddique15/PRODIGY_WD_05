@@ -8,20 +8,23 @@ import './App.css';
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [city, setCity] = useState('');
+  const [error, setError] = useState(null)
 
   const handleClick = async (city) => {
     try {
       const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=e97015c147584cccaeb132640241904&q=${city}`);
       if (!response.ok) {
+        const err = await response.json();
+        setWeatherData(null)
+        setError({ message: err.error.message, statusCode: err.error.code || 'Error' });
         throw new Error('Failed to fetch weather data');
       }
       const data = await response.json();
-      console.log(data)
-      if (data) {
+      
+      if(data) {
         setWeatherData(data);
-      } else {
-        console.error('No current data found in the response');
-      }
+        setError(null)
+      } 
     } catch (error) {
       console.error('Error fetching weather data:', error);
     }
@@ -31,7 +34,7 @@ const App = () => {
       <BackgroundVideo />
       <div className="container">
         <Search city={city} setCity={setCity} handleClick={handleClick} />
-        <Weather weatherData={weatherData} city={city} /> {/* Pass city to Weather component */}
+        <Weather weatherData={weatherData} city={city} error={error}/> {/* Pass city to Weather component */}
       </div>
     </>
   );
