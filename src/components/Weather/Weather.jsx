@@ -1,13 +1,11 @@
-// Weather.js
 import React, { useState, useEffect } from "react";
 import "./Weather.css";
 
 const Weather = (props) => {
   const { weatherData, city, error } = props;
-  // Initialize state for temperature and unit
-  const [temp, setTemp] = useState(null); // Initialize with null
-  const [unit, setUnit] = useState("°C"); // Initialize with Celsius unit
-  const date = new Date(weatherData?.location.localtime); // Replace with your date
+  const [temp, setTemp] = useState(null);
+  const [unit, setUnit] = useState("°C");
+  const date = new Date(weatherData?.location.localtime);
   const days = [
     "Sunday",
     "Monday",
@@ -17,22 +15,21 @@ const Weather = (props) => {
     "Friday",
     "Saturday",
   ];
-  const dayName = days[date.getDay()]; // Returns the name of the day
-  // Update temperature when weatherData changes
+  const dayName = days[date.getDay()];
+
   useEffect(() => {
     if (weatherData) {
-      setTemp(weatherData.current.temp_c); // Assuming temperature is initially in Celsius
+      setTemp(weatherData.current.temp_c);
     }
   }, [weatherData]);
 
-  // Function to handle unit toggle (between Celsius and Fahrenheit)
   const handleUnitToggle = () => {
     if (unit === "°C") {
       setUnit("°F");
-      setTemp(weatherData.current.temp_f); // Update temperature to Fahrenheit
+      setTemp(weatherData.current.temp_f);
     } else {
       setUnit("°C");
-      setTemp(weatherData.current.temp_c); // Update temperature to Celsius
+      setTemp(weatherData.current.temp_c);
     }
   };
 
@@ -46,16 +43,16 @@ const Weather = (props) => {
       )}
       {weatherData && (
         <>
-        <div className="center">
-          <img
-            className="icon"
-            src={weatherData.current.condition.icon}
-            alt="Weather Icon"
-          />
-          <p className="temp" onClick={handleUnitToggle}>
-            {temp} <span className="cf"> {unit}</span>
-          </p>
-          <p className="temp">{weatherData.location.name}</p>
+          <div className="center">
+            <img
+              className="icon"
+              src={weatherData.current.condition.icon}
+              alt="Weather Icon"
+            />
+            <p className="temp" onClick={handleUnitToggle}>
+              {temp} <span className="cf"> {unit}</span>
+            </p>
+            <p className="temp">{weatherData.location.name}</p>
           </div>
         </>
       )}

@@ -1,19 +1,15 @@
-*{
-    font-family: "Nunito", sans-serif;
+* {
+  font-family: "Nunito", sans-serif;
 }
 
-.container{
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
-    background: #00b7ff7b;
-    border: 2px solid #005d827b;
-    border-radius: 20px;
-    height: 80vh;
-    width: 50vw;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.container {
+  background: #00b7ff7b;
+  border: 2px solid #005d827b;
+  border-radius: 20px;
+  height: 80vh;
+  width: 50vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
