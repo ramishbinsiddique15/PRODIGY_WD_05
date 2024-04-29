@@ -1,29 +1,53 @@
-.search{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 50px;
+.search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
 }
 
-.input{
-    padding: 10px 20px;
-    border: 1px solid black;
-    border-radius: 30px;
-    font-size: 20px;
-    box-shadow: 2px 2px 8px black;
+.input {
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 30px;
+  font-size: 20px;
+  box-shadow: 2px 2px 8px black;
 }
-.button{
-    border: 1px solid rgb(36, 180, 62);
-    padding: 10px 20px;
-    border-radius: 20px;
-    background: rgb(36, 180, 62);
-    color: white;
-    font-weight: bolder;
-    font-size: 20px;
-    cursor: pointer;
-    transition: 0.3s ease-in;
-    box-shadow: 2px 2px 8px black;
+.button {
+  border: 1px solid rgb(36, 180, 62);
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: rgb(36, 180, 62);
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+  box-shadow: 2px 2px 8px black;
 }
-.button:hover{
-    background: rgb(48, 255, 86);
+.button:hover {
+  background: rgb(48, 255, 86);
+}
+
+@media (max-width: 768px) {
+  .input {
+    font-size: 18px;
+    padding: 8px 16px;
+  }
+
+  .button {
+    font-size: 18px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .input {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
 }
