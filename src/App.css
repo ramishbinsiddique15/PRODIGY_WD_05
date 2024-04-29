@@ -3,8 +3,8 @@
 }
 
 .container {
-  background: #00b7ff7b;
-  border: 2px solid #005d827b;
+  background: linear-gradient(to right, #000000, #4d4d4d);
+  border: 1px solid #000000;
   border-radius: 20px;
   height: 80vh;
   width: 50vw;
@@ -12,4 +12,5 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
