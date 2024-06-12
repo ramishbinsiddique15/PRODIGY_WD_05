@@ -38,3 +38,5 @@ npm i
 
 Contributions are welcome! If you find any bugs or want to suggest improvements, feel free to open an issue or submit a pull request.
 
+## Contact
+For any inquiries or feedback, you can reach out to me at [ramishbinsiddique24@gmail.com]
